@@ -1,0 +1,1955 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE documentation SYSTEM "doc.dtd">
+<documentation>
+	<app appname="daemon" appver="112">
+		<setting name="MKVEXTAUTH_SOURCE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Source name for the external user authentication.]]></description>
+			<comment><![CDATA[Source name used to build the function call which performs the external user authentication.
+It is used if no specific source is associated with the external user itself. This setting is
+read by the daemon master only.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[CAS]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[AUTHORIZATION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVEXTAUTH_UNKNOWN_USERS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables the external authentication for the unknown users.]]></description>
+			<comment><![CDATA[The Daemon delegates the authentication for the unknown users on the ION Platform directly to the
+external authentication component.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[AUTHORIZATION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVOBSOLETE_REG_TIMEOUT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Number of seconds to declare a pending registration request as obsolete. This affects just requests
+forwarded to an external authentication entity.]]></description>
+			<comment><![CDATA[This setting expresses the number of seconds after that a pending request will be removed.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[120]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[30000]]></maxvalue>
+			<example/>
+			<group><![CDATA[AUTHORIZATION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVEXTREPORTTIMEOUT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specify the timeout in seconds for DM Audit Report queries]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[120]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[30000]]></maxvalue>
+			<example/>
+			<group><![CDATA[COMPATIBILITY]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVDBTYPE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the database type the daemon master will use.]]></description>
+			<comment><![CDATA[daemon master only]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[FRDBM]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="MYSQL">
+					<description><![CDATA["MySql database"]]></description>
+				</value>
+				<value name="SYBASE">
+					<description><![CDATA["SYBASE database"]]></description>
+				</value>
+				<value name="ORACLE">
+					<description><![CDATA["ORACLE database"]]></description>
+				</value>
+				<value name="SQLSERVER">
+					<description><![CDATA["SQL Server database"]]></description>
+				</value>
+				<value name="ODBC">
+					<description><![CDATA["ODBC database driver"]]></description>
+				</value>
+				<value name="FRDBM">
+					<description><![CDATA["ION embedded database"]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDBPWD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the password used by the daemon to connect to the database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[ion]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBUSER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the user name used by the daemon to connect to the database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[ion]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVKEYFILE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Name of key license file]]></description>
+			<comment><![CDATA[This is the file which contains the platform licenses]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[key.init]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBSTRING" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Name of database this connection will connect to (it is DBMS dependent)]]></description>
+			<comment><![CDATA[Format accepted for this string are
+MYSQL: format accepted is <server name>[:<port>]@<database name>
+SQLSERVER: format accepted is <server name>[,<port>]@<database name>
+SYBASE: format accepted is <connection name>@<database name>. Connection name is specified in the files sql.ini on Windows and interfaces on Unix.
+ORACLE: the database name as it is specified in TNSNAMES.ORA file
+ODBC: any valid ODBC connection string. With iODBC you can set MKVDBSTRING "dsn=dataservicename" where dataservicename is the symbolic name configured in the iODBC configuration.
+
+FRDBM: this setting is not required in this case]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[localhost:5000@daemon]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVRESOLVEIP" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[If activated the daemon will try to resolve the host name from which the connection request has come (through the DNS).]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVAUDIT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[This setting specify whether the audit database should be used or not]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVMESSAGEQUEUE_MAXSIZE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Max capacity of MessageQueues used by reporting features]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[500]]></defvalue>
+			<minvalue><![CDATA[100]]></minvalue>
+			<maxvalue><![CDATA[1000]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPORTRANGE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[range used to get a free listen port for a component]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[Daemon Listen +1, Daemon Listen +99]]></defvalue>
+			<minvalue><![CDATA[1025]]></minvalue>
+			<maxvalue><![CDATA[65535]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVAUDITING_COMPONENTS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[If set, specifies the list of components for which the settings are audited into the Generic Auditing table. The list should be separated by spaces]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[PXE_SRV REFDATA_1 CME_GTWY_LND]]></example>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="The">
+					<description><![CDATA[list of component names for which the settings are audited into the Generic Auditing table]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVOBSOLETE_COMP_DAYS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Amount of days from the last registration to declare a component as obsolete.
+If the component is obsolete and it isn't an installed one, both its configured settings and connections will be deleted.]]></description>
+			<comment><![CDATA[The daemon master checks for obsolete components both at the starting time and when the date changes]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[30]]></defvalue>
+			<minvalue><![CDATA[30]]></minvalue>
+			<maxvalue><![CDATA[32767]]></maxvalue>
+			<example/>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVAUDIT_DBTYPE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the database type the entitlement server will use for AUDITING.]]></description>
+			<comment><![CDATA[daemon master only]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[""]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="NONE">
+					<description><![CDATA["The dedicated DB is same as main DB"]]></description>
+				</value>
+				<value name="MYSQL">
+					<description><![CDATA["MySql database"]]></description>
+				</value>
+				<value name="SYBASE">
+					<description><![CDATA["SYBASE database"]]></description>
+				</value>
+				<value name="ORACLE">
+					<description><![CDATA["ORACLE database"]]></description>
+				</value>
+				<value name="SQLSERVER">
+					<description><![CDATA["SQL Server database"]]></description>
+				</value>
+				<value name="ODBC">
+					<description><![CDATA["ODBC database driver"]]></description>
+				</value>
+				<value name="FRDBM">
+					<description><![CDATA["ION embedded database"]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVAUDIT_DBSTRING" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Name of AUDIT database this connection will connect to (it is DBMS dependent)]]></description>
+			<comment><![CDATA[Format accepted for this string are
+MYSQL: format accepted is <server name>[:<port>]@<database name>
+SQLSERVER: format accepted is <server name>[,<port>]@<database name>
+SYBASE: format accepted is <connection name>@<database name>. Connection name is specified in the files sql.ini on Windows and interfaces on Unix.
+ORACLE: the database name as it is specified in TNSNAMES.ORA file
+ODBC: any valid ODBC connection string. With iODBC you can set MKVDBSTRING "dsn=dataservicename" where dataservicename is the symbolic name configured in the iODBC configuration.
+FRDBM: this setting is not required in this case
+Empty string means use same DB as main]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVAUDIT_DBPWD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the password used by the component to connect to the audit database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[ion]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVAUDIT_DBUSER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the user name used by the component to connect to the audit database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[ion]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[DB MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDISABLE_DUMPGENERATION" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[If set, on Windows platforms, it disables the Daemon's mechanism for self-generating full core dumps in case of abnormal termination]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[ERROR_MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[On Windows platforms, the Daemon will self-generate a full core dump file in case of abnormal termination, and it will be located in the same directory of the Daemon's executable]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[On Windows platforms, the Daemon will not self-generate any core dump file in case of abnormal termination. Its generation will be delegated to external tools (e.g. Dr.Watson or UserDump)]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVMAP_SETTING_MSG(&lt;errorType&gt;)" multiInstance="true">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[This specifies the way to manage notifications on setting errors]]></description>
+			<comment><![CDATA[This setting is read by the daemon master only. The master daemon will spread the directive across the platform]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[NONE]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[set MKVMAP_SETTING_MSG(ERROR) ERROR]]></example>
+			<group><![CDATA[Error management]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="NONE">
+					<description><![CDATA["No error messages are notified on the platform"]]></description>
+				</value>
+				<value name="ERROR">
+					<description><![CDATA["Every setting issue is notified as an error message across the platform"]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVSUPPORTDIR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[directory path where to locate third party libraries for Java components]]></description>
+			<comment><![CDATA[This setting can be used to specify the folder where third party libraries can be deployed for Java components
+The default directory is the component working dir.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[The same path of daemon BINDIR]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBDIR_ROOT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[root path where to locate all database directories for each running processes.]]></description>
+			<comment><![CDATA[Using the variable $MKVDBDIR_COMP while defining the database path it is possible
+to automatically locate the database directory of the process that is composed by the
+concatenation of the MKVDBDIR_ROOT and the component name]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[/ion/marketview/db]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If a component called SAMPLE_COMPONENT is configured to have the database directory
+equal to MKVDBDIR_COMP then the process manager will automatically try to create a directory
+called /ion/marketview/db/SAMPLE_COMPONENT/MkvDB storing all needed information inside it.
+If your platform installation have been done on /ion/marketview_prod/ path you
+may want to centralize all db paths in /ion/marketview_prod/db adding the following line in the mkv.init file of the Daemon:
+On Unix
+set MKVDBDIR_ROOT {/ion/marketview_prod/db}
+On Windows
+set MKVDBDIR_ROOT {P:\\ion\\marketview_prod\\db}]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVLOGSDIR_ROOT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[root path where to locate all logs directories for each running processes.]]></description>
+			<comment><![CDATA[Using the variable $MKVLOGSDIR_COMP while defining the logging path it is possible
+to automatically locate the logging directory of the process that is composed by the
+concatenation of the MKVLOGSDIR_ROOT and the component name]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[/ion/marketview/logs]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If a component called SAMPLE_COMPONENT is configured to have the logging directory
+equal to MKVLOGSDIR_COMP then the process manager will automatically try to create a directory
+called /ion/marketview/logs/SAMPLE_COMPONENT/LOGS posting all logs inside it.
+If your platform installation have been done on /ion/marketview_prod/ path you
+may want to centralize all log paths in /ion/marketview_prod/log adding the following line in the mkv.init file of the Daemon:
+On Unix
+set MKVLOGSDIR_ROOT {/ion/marketview_prod/log}
+On Windows
+set MKVLOGSDIR_ROOT {P:\\ion\\marketview_prod\\log}]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVWORKDIR_ROOT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[root path where to locate all working directories for each running processes.]]></description>
+			<comment><![CDATA[Using the variable $MKVWORKDIR_COMP while defining the working path it is possible
+to automatically locate the working directory of the process that is composed by the
+concatenation of the MKVWORKDIR_ROOT and the component name]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[/ion/marketview/wrk]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If a component called SAMPLE_COMPONENT is configured to have the working directory
+equal to MKVWORK_COMP then the process manager will automatically try to create a directory
+called /ion/marketview/wrk/SAMPLE_COMPONENT and execute the application inside it.
+If your platform installation have been done on /ion/marketview_prod/ path you
+may want to centralize all working paths in /ion/marketview_prod/wrk adding the following line in the mkv.init file of the Daemon:
+On Unix
+set MKVWORKDIR_ROOT {/ion/marketview_prod/wrk}
+On Windows
+set MKVWORKDIR_ROOT {P:\\ion\\marketview_prod\\wrk}]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVBINDIR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[directory path where to locate all executable files]]></description>
+			<comment><![CDATA[In order to have configurations that are platform independent and in order to have a more flexible
+and maintainable way of expressing executable paths it is suggested to use this setup to centralize
+executable files. The System Administrator application provides support to the use of this feature.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[/ion/marketview/bin]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If your platform installation have been done on /ion/marketview_prod/ path you
+may want to centralize all executable paths in /ion/marketview_prod/bin. In order to let the
+Daemon find executable files you could set the variable by adding the following line in the mkv.init file
+of the Daemon:
+On Unix
+set MKVBINDIR {/ion/marketview_prod/bin}
+On Windows
+set MKVBINDIR {P:\\ion\\marketview_prod\\bin}]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVCFGDIR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[directory path where to locate all .init files]]></description>
+			<comment><![CDATA[This setting can be used to centralize the configuration files (mkv.init) of all components on a single directory.
+The mkv<DaemonName>_<CompName>.init(jinit) file is dynamically created by the daemon when launching a component.
+The default directory is the component working dir.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[working dir of the component]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If your want to centralize all .init(.jint) files in /ion/marketview_prod/cfg add the following line in the mkv.init file of the Daemon:
+On Unix
+set MKVCFGDIR {/ion/marketview_prod/cfg}
+On Windows
+set MKVCFGDIR {P:\\ion\\marketview_prod\\cfg}]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPS_NAME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Name of the Password Server integrated with the Daemon.]]></description>
+			<comment><![CDATA[If not specified, the Password Server name depends by the Daemon Master name.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[PS_<MKVCOMPONENT>]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[PASSWORD_SERVER]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPS_ENABLE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables the Password Server feature integrated with the Daemon.]]></description>
+			<comment><![CDATA[The Password Server is enabled if and only if the PASSWORD_SERVER license is present within the Platform.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PASSWORD_SERVER]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVTIMEZONEFILE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Path of the CSV file containing the specification of time zones used to customize the internal dictionary used by Daemon to calculate the time
+of the regions. The time zones in the file replace the specifications contained in Daemon (if the specified time zone is present),
+consequently no new time zone can be added.
+The Daemon Slaves automatically inherit the specification of the time zones by the Daemon Master.
+For further information refer to:
+- Boost TZ format file (http://www.boost.org/doc/libs/1_57_0/doc/html/date_time/local_time.html#tz_database_datafile)
+- TZ and DST database (http://www.twinsun.com/tz/tz-link.htm)]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[time_zones.csv]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVENABLECONSOLE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Under the Windows platforms it enables the creation of a new console for each component launched by the daemon.
+Under Linux systems it redirects console output to /dev/null]]></description>
+			<comment><![CDATA[Creating a new console for a component is necessary whether the process managed by the daemon dumps
+information on stdout/stderr]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The component is launched without any console]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The component is launched with its own console]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVARGVPRECEDENCE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Change the order of command line arguments when the daemon launches a managed component]]></description>
+			<comment><![CDATA[Enabling this feature allows the daemon to launch Java components without a script file.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The component is launched with the following command line: -init <init file> <command line arguments>]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The component is launched with the following command line: <command line arguments> -init <init file>]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDISABLESESSIONPWD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[By default the password generated for starting up managed components is not usable both for manual
+and managed components across different launching sessions
+Through this setting it is possible to enable the adoption of session passwords for managed components]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The user password generated for starting up managed components is not usable neither for manual components nor
+for managed components across different launching sessions]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The user password generated for starting up managed components is the same used for authenticating manual component]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVUSEMASTERTIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[By default the component managed by the Daemon are scheduled basing on the time where the Daemon is running (local time).
+Through this setting it is possible, to force the Daemon Slaves to use the Master time instead the local time.
+This is a Daemon Master''s setting, which automatically forwards the setting''s value to all the Daemon Slaves.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The managed components are scheduled basing on the local time]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The managed components are scheduled basing on the Daemon Master time]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVQUITCHILDPROCESSES" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[By default the components launched by the Daemon are independent processes which don''t quit when the related Daemon quits.
+Through this setting it is possible, only for Windows, to quit the components launched by the Daemon when the latter quits.
+This is a Daemon Master''s setting, which automatically forwards the setting''s value to all the Daemon Slaves.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The components launched by the Daemon don''t quit when the latter quits]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The components launched by the Daemon quit when the latter quits]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVCHECKMATCHINGPID" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specifies if the Daemon makes the consistency check based on the PID of the process it has launched.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The Daemon doesn''t make the consistency check of the process it has launched]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The Daemon makes the consistency check of the process it has launched]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVWRITEINITFILE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[specifies if the daemon passes the settings to the launched components using a mkv.init file
+or using the command line]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The settings are passed using the command line]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The settings are passed using the mkv.init file written on the components''s working dir or on
+the directory specified by MKVCFGDIR if it is set]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVSTDERR2FILE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[This option enables the redirection of stderr of the components to files instead of daemon''s console (if any).
+The error file will be named "$MKVWORKDIR_COMP/component.stderr]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[PROCESS MANAGEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The component''s stderr messages will be redirected to daemon''s console, if any, or lost]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[The component''s stderr messages will be redirected to the output file]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVLICENSEACQUIRE_ALERT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specifies whether failed acquire-license attempts should be reported as platform error messages]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[REGISTRATION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Failed acquire-license attempts do not generate platform error messages]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Failed acquire-license attempts are notified through platform error messages]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVSTRICT_REG_NAMES" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Check on registering component names. If this setting is set up to 1 component names
+can contain only the alpha numeric characters plus _ and @:]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[REGISTRATION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVRECOVERY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[daemon launches a component if it is not yet registred, waiting for a time
+equal to MKVRECOVERY * component priority. The priority of the component is
+dinamically calculated on the basis of the daemon that are up and running.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[60]]></defvalue>
+			<minvalue><![CDATA[5]]></minvalue>
+			<maxvalue><![CDATA[300]]></maxvalue>
+			<example/>
+			<group><![CDATA[RESILIENCY]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVPSDIFFUSER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Force the password and user name to be different.]]></description>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Password and Username can be equal]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Password and Username MUST be different]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVPSMINLOWERCASE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum number of lower case letters required in the password.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSMINSPECIALCHAR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum number of non alphanumeric characters required in the password.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSMINUPPERCASE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum number of upper case letters required in the password.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSMINNUMERIC" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum number of digits required in the password.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSMINLENGTH" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum length of the password.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[6]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSUSEPWDHISTORY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Force the password to be different from the last inserted ones. The checking is performed on a per-user basis.]]></description>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Do not perform any checking on the last 10 inserted passwords]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Check for duplicates in the last passwords associated with the user]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVPSFSPECIALORDIGIT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Force the password to contain at least one non-alphanumeric or a number within the first 7 characters.]]></description>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Do not perform any checking on either special chars or digits presence in the password]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Check for either digits or special characters within the first 7 positions]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVPSUSEPOLICY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define whether the password policy is enabled or not.]]></description>
+			<comment><![CDATA[The Password Server is able to apply or not checks on passwords when inserted, basing on the configuration settings defined in mkv.init file.]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[No password policy check is applied]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Password policy check is applied]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVPSMINASCII" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the minimum number of ASCII chars required in the password without taking into account digits (chars from 0 - 9).]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[3]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPSPWDHISTORYSIZE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Set the amount of historical passwords to be kept for each user. The candidate passwords will be checked for uniqueness against these set of historical passwords.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[10]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[100]]></maxvalue>
+			<example/>
+			<group><![CDATA[SECURITY]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVEXT_STATS_SOURCE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Source of the statistics exported by the ION Web Server]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[*]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[SERVICE LAYER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVMONITOR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Daemon creates monitor and auditor log files if this flag is set. "1" means that the
+Daemon will create the files, "0" that the Daemon will not create the files, "2" that
+Daemon will create the files if it is a Master only.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[2]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[2]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Daemon will not create monitor and auditor log files.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Daemon will create monitor and auditor log files.]]></description>
+				</value>
+				<value name="2">
+					<description><![CDATA[Daemon will create monitor and auditor log files if it is a Master only.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDDEBUG" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Debugging level of the Daemon component.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[10]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[20]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[No trace]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[High level]]></description>
+				</value>
+				<value name="10">
+					<description><![CDATA[Standard level]]></description>
+				</value>
+			</values>
+		</setting>
+	</app>
+	<app appname="api" appver="132">
+		<setting name="MKVDTBLOCKING" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables the blocking mechanism for update transmission (0/1).]]></description>
+			<comment><![CDATA[It is recommended to keep this parameter to 0 in order to reduce data latencies.
+It is reasonable to consider switching on this parameter on those applications that perform massive updates (thousands of update per second) in order to reduce resources usage (network and CPU).]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Each update is sent immediately]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Updates are sent when the MarketView engine returns to the main-loop.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVCOMPRESS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables data compression (0/1)]]></description>
+			<comment><![CDATA[This setting enables the data compression on  connections. Each block is compressed before being sent if its size is greater than MKVCOMPRESSLIMIT.
+
+See also MKVCOMPRESSLIMIT.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Data compression is disabled]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Data compression is enabled]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVCRYPT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables data encryption (0/1)]]></description>
+			<comment><![CDATA[This setting enables the data encryption. Encryption is based on the DES algorithm with 64 bits key. The key used is fixed.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Data encryption disabled]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Data encryption enabled]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVTCP_NODELAY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Sets the TCP no delay option, disabling Nagle's algorithm]]></description>
+			<comment><![CDATA[The activation of the Nagle's is deprecated as it can generate latencies in data transmission between peers.
+Its activation should always be discussed before with ION Consultants and supported by specific use cases that demonstrate its benefic effects.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Nagle's algorithm is enabled]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Set the TCP no delay option, disabling Nagle's algorithm]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVNEGTIMEOUT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[MarketView inter-process handshaking timeout expressed in seconds]]></description>
+			<comment><![CDATA[The MarketView inter-process communication protocol support an handshaking phase where components exchange relevant information in order to agree with some communication protocol policies that will be used on the established session.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[16]]></defvalue>
+			<minvalue><![CDATA[4]]></minvalue>
+			<maxvalue><![CDATA[240]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVMAXQUEUESIZE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[The starting maximum queue size (in Kbytes) used on connections to keep maximum delays under control.]]></description>
+			<comment><![CDATA[When sending queues exceeds this size the MarketView engine starts its flow control management by coalescing subsequent updates on the same record in order to limit delays between components.
+The MAXQUEUESIZE initial value is read at startup from the MKVMAXQUEUESIZE setting and than dynamically adjusted on each established connection depending on the amount of time the other peer is able to react to round trip delays messages.
+See also MKVMAXDELAY]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[128]]></defvalue>
+			<minvalue><![CDATA[32]]></minvalue>
+			<maxvalue><![CDATA[8192]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVCTIMEOUT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[The amount of time a component will wait before attempting to re-establish a failed connection  (in seconds)]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[10]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[100000]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVCALIVE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Keep alive timeout of the connection (in sec)]]></description>
+			<comment><![CDATA[The maximum amount of time (in seconds) a component will wait without receiving messages (or heartbeats) before dropping the connection. In the case of CS connections, this will result in un-registering from the platform.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[240]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[100000]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVTCP_BUFFER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Sets the buffer size of the TCP sockets used by this API]]></description>
+			<comment><![CDATA[The tuning of the socket buffer size could improve performance depending on network characteristics.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[65536]]></defvalue>
+			<minvalue><![CDATA[32768]]></minvalue>
+			<maxvalue><![CDATA[1048576]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVCOMPRESSLIMIT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Sets the compression threshold (in Byte),]]></description>
+			<comment><![CDATA[If data compression is enabled, each block is compressed before being sent if its size is greater than MKVCOMPRESSLIMIT to avoid the useless compression of small blocks.
+See also MKVCOMPRESS.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1000000000]]></maxvalue>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVWWW" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Ip address / host name where managed components have to register to.]]></description>
+			<comment><![CDATA[The value of the WWW setting is passed to the managed components in the CSHOST value]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[127.0.0.1]]></example>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVCOMPONENT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Daemon component name.]]></description>
+			<comment><![CDATA[Daemons names within a platform must be unique. Accepted characters for the component name are the alpha numeric characters plus _ @ # :]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[N/A]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[MANDATORY]]></scope>
+		</setting>
+		<setting name="MKVCSPORT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Tcp/Ip port where the Daemon exports its services.]]></description>
+			<comment><![CDATA[The Daemon Master uses MKVCSPORT to export its services.
+The Daemon Slave uses MKVCSPORT to register with a Daemon and uses MKVLISTEN to export its services.
+See also MKVCSHOST, MKVLISTEN.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[N/A]]></defvalue>
+			<minvalue><![CDATA[256]]></minvalue>
+			<maxvalue><![CDATA[65535]]></maxvalue>
+			<example><![CDATA[If you install a Daemon Master on host Serve1 using port 19000 and a Daemon Slave on host Server2 using port 19000 you must
+configure the two daemons as the following:
+Daemon Master
+set MKVCSPORT 19000
+Daemon Slave
+set MKVCSHOST Server1
+set MKVCSPORT 19000
+set MKVLISTEN 19000]]></example>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[MANDATORY]]></scope>
+		</setting>
+		<setting name="MKVCSHOST" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Host name or IP address of the Daemon to register with.]]></description>
+			<comment><![CDATA[If MKVCSHOST is not set the Daemon is a Master, otherwise it is a Slave.
+The Daemon Slave identifies the Daemon to register with, using MKVCSHOST and MKVCSPORT.
+In Backup/Failover platform configurations this variable must be set as a list of hosts where Daemons
+are running. See also MKVCSPORT, MKVCSRETRY]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[N/A]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[Standard configuration:
+Daemon Master
+set MKVCSPORT 14000
+Daemon Slave
+set MKVCSHOST DaemonMasterHost
+set MKVCSPORT 14000
+Backup/Failover configuration:
+Daemon Slave
+set MKVCSHOST {DaemonMasterHost1 DaemonMasterHost2}
+set MKVCSPORT {14000 14000}]]></example>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[MANDATORY]]></scope>
+		</setting>
+		<setting name="MKVUSER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[The user name used to authenticate the component to the Configuration Server.]]></description>
+			<comment><![CDATA[This setting is MANDATORY in case user authentication services has been enabled in the Platform.
+See also MKVPWD.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[unknown]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPWD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[The password used to authenticate the user (MKVUSER) to the Configuration Server.]]></description>
+			<comment><![CDATA[To produce the encrypted password to be stored in the mkv.init file please refer to the MarketView 'pwdtool'.
+See also MKVUSER.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[unknown]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVLISTEN" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Tcp/Ip port used by a Daemon Slave to accept registration from ION components.]]></description>
+			<comment><![CDATA[This setting is MANDATORY for Daemon Slave components while is not requested on Daemon Master]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[15000]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[65535]]></maxvalue>
+			<example><![CDATA[set MKVLISTEN 12300]]></example>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVBINDADDRESS(tcp_service)" multiInstance="true">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Client side bind address]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[If you want to use the 193.170.12.104 address for the bind done by the MarketView engine use
+set MKVBINDADDRESS(MKV) 193.170.12.104]]></example>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVUSELOCALTIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Defines if the component uses the local time or the platform time.]]></description>
+			<comment><![CDATA[Having hosts with the clock synchronized typically help in doing cross components analysis on their logs. By default it is assumed the customer uses its own clock synchronization policy.
+By setting the parameter to 1 each component will synchronize its logging time at registration time (when they connect to the Configuration Server).]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[DATE TIME]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="1">
+					<description><![CDATA[In this case local time is used]]></description>
+				</value>
+				<value name="0">
+					<description><![CDATA[The platform time is used]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVENT_REQTIMEOUT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specifies the timeout in seconds for declaring submitted entitlement queries as expired]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[60]]></defvalue>
+			<minvalue><![CDATA[1]]></minvalue>
+			<maxvalue><![CDATA[600]]></maxvalue>
+			<example/>
+			<group><![CDATA[ENTITLEMENT]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVENT_SOURCE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specifies the source of the entitlement service we want to use. The component sends the entitlement queries to the entitlement
+server associated to the specified source. In case the source is set up to _AUTODISCOVERY_ , the client component connects to the first entitlement service it discovers
+in the platform. The default value <empty string> stands for any source.]]></description>
+			<comment><![CDATA[Whether the value differs from _AUTODISCOVERY_ the component must be connected manually to the entitlement server.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[ENTITLEMENT]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBDIR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[It is the path of the MkvDB directory used to store permanently application data.
+By default the working directory is used.]]></description>
+			<comment><![CDATA[MarketView Administrator can decide to use this parameter in order to re-direct and centralize on a shared file system all embedded databases used by ION MarketView products.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[.]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVINIT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[It is the path name of the configuration file]]></description>
+			<comment><![CDATA[Settings in MarketView components can be set using different inputs
+- 	command line
+-	configuration file
+-	environment
+-	default
+Command line specified settings override those specified in the configuration file that overrides those specified through the environment. In case a setting is not specified a default value is provided by the module that makes use of it.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[./mkv.init]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVLOGSDIR" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Specifies the directory where log files are written.
+By default the working directory is used.]]></description>
+			<comment><![CDATA[Each component must have its private log directory.
+The MarketView engine will automatically complete the path specified by adding the LOGS directory and the file used by the application to trace its information.]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[.]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[Suppose you want to centralize all components' logs directories.
+set LOGSDIR  /ion/marketview/MYCOMPONENTNAME
+The directory /ion/marketview/MYCOMPONENTNAME must exists.
+The directory /ion/marketview/MYCOMPONENTNAME/LOGS will be automatically created.]]></example>
+			<group><![CDATA[FILE PATH]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVPUBLISH_EXCLUDE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Exclusion statements which declare what publications should be discarded.]]></description>
+			<comment><![CDATA[See MKVPUBLISH_INCLUDE]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example><![CDATA[The application does not requires Market Data:
+set MKVPUBLISH_ EXCLUDE {CM_DEPTH.*.*}]]></example>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVCACHEPOLICY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define the caching policy for subscribed data.]]></description>
+			<comment><![CDATA[When records values are not cached within the API all methods accessing the cache for a specific subscribed record will fail
+Applications using this setting to 1 should possibly implmement their caching logic.
+A proper subscription manager is also suggested to be implemented at an application level in order to avoid multiple subscriptions in case
+the same object is requested from different part of the appplication logic.]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[MULTI THREADING]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Records' values are cached into the API.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Records' values are not cached into the API.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVSIGALRM" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Unix only. Enable the use of real timer while creating a connection.]]></description>
+			<comment><![CDATA[Connections over the Tcp/Ip protocol are done by the MarketView engine in a synchronous way.
+In some particular network configuration when the destination I.P. is not reachable this could block the application for seconds before the connection fails.
+In order to limit the impact of this a real timer is set up by the MarketView engine in order to break the connection activity if not completed within one second.
+MT applications using the MarketView API might want to disable this mechanism.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[MULTI THREADING]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The use of real timer is disabled.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Use of real timer]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVREALTIMER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Unix only. Use of real timer in the MarketView engine main-loop in order to serve timer handlers.]]></description>
+			<comment><![CDATA[In MT applications it is suggested to disable this setting. The MarketView engine timer management will be then implemented by using the expiration time mechanism provided by the select method.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[MULTI THREADING]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[The use of real timer is disabled.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Use of real timer]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVCSRETRY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[In a Backup/Failover configuration this variable represents the maximum time interval (in seconds) after which a component switches from a Configuration Server (that is no longer available) to the next one configured.]]></description>
+			<comment><![CDATA[This setting applies only to Backup/Failover configurations.
+See also 'MarketView Failover System' documentation.
+See also MKVCSHOST,MKVCSPORT]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[30]]></defvalue>
+			<minvalue><![CDATA[20]]></minvalue>
+			<maxvalue><![CDATA[36000]]></maxvalue>
+			<example><![CDATA[set MKVCSHOST {SERVER_NY SERVER_NJ}
+set MKVCSPORT {13000 14000}
+set MKVCSRETRY 120
+The component will try to connect to SERVER_NY (on port 13000) for 120 seconds. If it does not succeed, it will try to connect to SERVER_NJ on port 14000.]]></example>
+			<group><![CDATA[RESILIENCY]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVSTATIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Statistics reporting interval time (in seconds)]]></description>
+			<comment><![CDATA[Each component sends statistic info to ION MarketView monitoring tools (SysAdmin, MONITOR, PerfMeter).
+These statistics refer to the general process information (CPU,MEMORY) and to specific activities the process is performing on the MarketView platform.
+-	Component runtime info: number of updates, subscriptions, publication available into the component
+-	Connection info: number of messages sent/recv through the connection, round trip delays detected in the sample period
+-	End 2 End delays: data latencies on records updates
+
+Decreasing this setting value could have impact on the CPU usage of the Configuration Server so it is recommended not to change it before having consulted ION.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[60]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[32000]]></maxvalue>
+			<example/>
+			<group><![CDATA[STATISTICS]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVLOGSASYNC" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Logging service mode]]></description>
+			<comment><![CDATA[When Asynchronous logging is enabled a new thread is created for each log file, and all I/O functions are performed by the specific thread.
+Decoupling the logging activity with the business logic can have meaningful impact on the application performances and on the application resiliency.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="1">
+					<description><![CDATA[Asynchronous logging is enabled.]]></description>
+				</value>
+				<value name="0">
+					<description><![CDATA[Logging is performed synchronously by the same thread that runs the MarketView engine.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVUSEMSECS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Define time precision when reporting the timestamp within logs and supply objects.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[3]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[each line logged will have the following syntax: hh:mm:ss:cc|...]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[each line logged will have the following syntax: hh:mm:ss:mmm|...]]></description>
+				</value>
+				<value name="2">
+					<description><![CDATA[each line logged will have the following syntax: hh:mm:ss:dddd|...]]></description>
+				</value>
+				<value name="3">
+					<description><![CDATA[each line logged will have the following syntax: hh:mm:ss:uuuuuu|...]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVLOGSBUFFERSIZE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Buffer size used for asynchronous logging service(in MByte)]]></description>
+			<comment><![CDATA[A proper asynchronous logging service requires a flow control mechanism that will allow the module using the service to deal with potential disk failures that could block the logging thread activity.
+For this reason a maximum fixed size of the buffer used for exchanging logs is needed.
+The MarketView engine either in case of disk failures or in case of buffer full will report the error to the Platform Administrator through standard Platform Error messages displayed into the SysAdmin component.
+In order to avoid useless suspension of the logs due to some application peculiarities it is possible to increase the logging buffer size.
+See also MKVLOGSASYNC, MKVLOGSASYNCWAIT]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue><![CDATA[1]]></minvalue>
+			<maxvalue><![CDATA[20]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVLOGSFLUSHTIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Interval between log flushes [milliseconds]]]></description>
+			<comment><![CDATA[In order to reduce the CPU used for the logging activity by default the MarketView logging service left the responsibility of flushing data to the O.S.
+In particular circumstances this setting can be changed depending on customer requirements.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[-1]]></defvalue>
+			<minvalue><![CDATA[-1]]></minvalue>
+			<maxvalue><![CDATA[10000000]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="-1">
+					<description><![CDATA[In this case the log files are never explicitly flushed leaving the O.S. to commit the file descriptor cache to the file system.]]></description>
+				</value>
+				<value name="0">
+					<description><![CDATA[In this case the log files are explicitly flushed at every time a write operation is performed.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVMINDISKFREE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Min disk free requirements in order to keep the logging service active [MByte]]]></description>
+			<comment><![CDATA[In case the disk space detected by the MarketView engine is less than this setting then logging services are suspended preventively.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[10]]></defvalue>
+			<minvalue><![CDATA[1]]></minvalue>
+			<maxvalue><![CDATA[10000000]]></maxvalue>
+			<example><![CDATA[The Platform Administrator decides to centralize all components logs by centralizing them on shared volume. Moreover he decides to always preserve 2Gbytes in order to be able to use the same disk for administrative and support reason (e.g.: copying logs while components are still running for reporting and analysis reasons).
+set MKVMINDISKFREE  2048]]></example>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVLOGSASYNCWAIT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Asynchronous log service wait interval (in msecs)]]></description>
+			<comment><![CDATA[Applies to asynchronous logging service. It is the wait interval used by the logging thread before waking up and managing logs available in its buffer.
+Letting the thread accumulate logging requests will improve component performance as all requests will be then served with just one system call (fwrite) limiting the context switch between user and kernel mode.
+Moreover being not event driven (i.e. the thread does not wake-up every time a log request is available on the buffer) will decrease the number of context switches between active threads by optimizing the CPU usage and by limiting application's latencies connected to thread synchronizations.
+
+See also MKVLOGSBUFFERSIZE]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[200]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[1000]]></maxvalue>
+			<example><![CDATA[n/a]]></example>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="MKVDEBUG" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables traces and logging on log files]]></description>
+			<comment><![CDATA[Setting MKVDEBUG to a value different from 0 enables all tracing level >= DEBUG.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[-10000]]></minvalue>
+			<maxvalue><![CDATA[10000]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[Logging is disabled.]]></description>
+				</value>
+				<value name="-40">
+					<description><![CDATA[+ Low level details about subscriptions.]]></description>
+				</value>
+				<value name="-20">
+					<description><![CDATA[+ Details about P2P.]]></description>
+				</value>
+				<value name="-10">
+					<description><![CDATA[+ Details of network activities.]]></description>
+				</value>
+				<value name="-1">
+					<description><![CDATA[+ Details of supplied fields.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[Main events, pub/subscribe and request/reply protocols events, statistics info.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVLOGSDAYS" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Keeps log files for LOGSDAYS days.]]></description>
+			<comment><![CDATA[Log files older than LOGSDAYS are deleted at component startup and when the date changes. The mechanism does not consider the working calendar.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[2]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[100000]]></maxvalue>
+			<example/>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[In this case log files are never deleted.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVMAXLOGSIZE" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Maximum log size (in MByte)]]></description>
+			<comment><![CDATA[When the maximum log size is reached, the log file is split. The current log is renamed in <LOGNAME>.<Number> where Number is calculated by looking up into the logging directory. The current logging activity is always performed on the <LOGNAME> file.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1024]]></defvalue>
+			<minvalue><![CDATA[10]]></minvalue>
+			<maxvalue><![CDATA[1024]]></maxvalue>
+			<example><![CDATA[Suppose you have MKVDEBUG value set to 1. In this case the MarketView engine creates the standard PSH log file using the following syntax for the file name: PSH_<DD-MM.YY>.log
+When the PSH logs reaches the MKVMAXLOGSIZE then the file is closed and renamed in PSH_<DD-MM.YY>.log.<Number> while the MarketView engine will create a new PSH_<DD-MM.YY>.log where it will continue its logging activity.]]></example>
+			<group><![CDATA[TRACE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="DISABLE_QPC" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Disables Query Performance Counters]]></description>
+			<comment><![CDATA[Disables usage of Performance Counters for high precision timers.
+This setting can be activated on machines that do not provide reliable performance counters.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[WINDOWS]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="ENABLE_LFH" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enables the Low Fragmentation Heap]]></description>
+			<comment><![CDATA[Windows XP and Windows Server 2003 introduce the low-fragmentation heap (LFH): it is built on top of the existing heap and reduces fragmentation of the heap.
+This settings is available only from command line.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[WINDOWS]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+		<setting name="TIMEBEGINPERIOD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Sets minimum timer resolution]]></description>
+			<comment><![CDATA[When this settings has a value greater than 0 the API does a call to "timeBeginPeriod" providing the specified value.
+The "timeBeginPeriod" function requests a minimum resolution for periodic timers and might improve the accuracy of time-out intervals in wait functions.]]></comment>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1000]]></maxvalue>
+			<example/>
+			<group><![CDATA[WINDOWS]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+		</setting>
+	</app>
+	<app appname="MIX" appver="154">
+		<setting name="MKVDBDRIVER" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[embedded database to use.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[FRDBM_ASYNC]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[CONNECTION]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="FRDBM_ASYNC">
+					<description><![CDATA[use separate thread for storing on MkvDB tables.]]></description>
+				</value>
+				<value name="FRDBM">
+					<description><![CDATA[use application thread for storing on MkvDB tables.]]></description>
+				</value>
+				<value name="DBMS_ASYNC">
+					<description><![CDATA[use separate thread for storing on DBMS tables.]]></description>
+				</value>
+				<value name="DBMS">
+					<description><![CDATA[use application thread for storing on DBMS tables.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVUSEPATTERN" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enable or disable patterns publishing.]]></description>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[1]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[does not publish patterns.]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[does publish patterns.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVUSEWEAKWASHING" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[For backward compatibility name washing]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[use C-API compliant name washing]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[use backward compatible washing]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVMIXDEBUG" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[For extensive PublishStart/Stop logging]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[no logging on PublishStart/Stop]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[logging on PublishStart/Stop]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVBATCHNOTIFICATIONSONLOAD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[For load operations, force a batch notification at the end of the overall load, instead of incremental notification events]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[raise incremental events during load]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[raise all the events in batch at the end of the overall load]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVALLOWMIXDBCONVERSION" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Enable or disable db conversion from FRDBM to DBMS.]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[suppress conversion]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[enable conversion]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVFORCEREOPENONFETCH" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[For FRDBM, force synchronous re-open() recovery on read() failure]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[0]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[1]]></maxvalue>
+			<example/>
+			<group><![CDATA[FILTER]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[do not use synchronous recovery]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[use synchronous recovery]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDBMS_CONN_POLLTIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Interval between two subsequent DBMS connection probes]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[1000]]></defvalue>
+			<minvalue><![CDATA[20]]></minvalue>
+			<maxvalue><![CDATA[60000]]></maxvalue>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVLOCKPOLICY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[define the locking policy to be used for protecting the MkvDB directory.]]></description>
+			<comment><![CDATA[the locking policy when actived relies on the standard POSIX lock managment through the
+use of the fcntl POSIX interface. This mechanism in some specific NFS configurations might not work
+properly leaving directories locked erroneously.
+For this reason the policy has been defaulted to 2.]]></comment>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[2]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[ADVANCED]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA[the MkvDB directory is not locked]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA[the MkvDB directory is locked, at start up if the MkvDB
+directory is found locked the component blocks until the lock is released.]]></description>
+				</value>
+				<value name="2">
+					<description><![CDATA[the MkvDB directory is locked, at start up if the MkvDB directory
+is found locked the component remove the lock on the database starting its normal activity.
+An error message is sent to the SysAdmin in order to notify the anomaly.]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDBMS_CLIENT" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the database type this component will use.]]></description>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue/>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="MYSQL">
+					<description><![CDATA["MySql database"]]></description>
+				</value>
+				<value name="SYBASE">
+					<description><![CDATA["SYBASE database"]]></description>
+				</value>
+				<value name="ORACLE">
+					<description><![CDATA["ORACLE database"]]></description>
+				</value>
+				<value name="SQLSERVER">
+					<description><![CDATA["SQL Server database"]]></description>
+				</value>
+				<value name="ODBC">
+					<description><![CDATA["ODBC database driver"]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDBMS_SCHEMAMODIFY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description/>
+			<comment/>
+			<type><![CDATA[ENUM]]></type>
+			<defvalue><![CDATA[$GLOB_SCHEMAMODIFY]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+			<values>
+				<value name="0">
+					<description><![CDATA["Do not perform any modification to the DB schema even if it is required"]]></description>
+				</value>
+				<value name="1">
+					<description><![CDATA["Allow the MIX library to modify the DB schema if it is required"]]></description>
+				</value>
+				<value name="$GLOB_SCHEMAMODIFY">
+					<description><![CDATA["The variable setup is inherited from the global setting GLOB_SCHEMAMODIFY"]]></description>
+				</value>
+			</values>
+		</setting>
+		<setting name="MKVDBMS_PASSWD" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the password used by this component to connect to the database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBMS_USERID" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[the user name used by this component to connect to the database.]]></description>
+			<comment/>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBMS_STRING" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Name of database this component will connect to (it is DBMS dependent)]]></description>
+			<comment><![CDATA[Format accepted for this string are
+MYSQL: format accepted is <server name>[:<port>]@<database name>
+SQLSERVER: format accepted is <server name>[,<port>]@<database name>
+SYBASE: format accepted is <connection name>@<database name>. Connection name is specified in the files sql.ini on Windows and interfaces on Unix.
+ORACLE: the database name as it is specified in TNSNAMES.ORA file
+ODBC: any valid ODBC connection string. With iODBC you can set MKVDBSTRING "dsn=dataservicename" where dataservicename is the symbolic name configured in the iODBC configuration.
+
+FRDBM: this setting is not required in this case]]></comment>
+			<type><![CDATA[STR]]></type>
+			<defvalue><![CDATA[[Empty String]]]></defvalue>
+			<minvalue/>
+			<maxvalue/>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBMS_POLLTIME" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Interval between two subsequent batch write on the database]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[20]]></defvalue>
+			<minvalue><![CDATA[0]]></minvalue>
+			<maxvalue><![CDATA[60000]]></maxvalue>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+		<setting name="MKVDBMS_RETRYDELAY" multiInstance="false">
+			<tag><![CDATA[]]></tag>
+			<description><![CDATA[Retry interval in case of disconnection from the DBMS]]></description>
+			<comment/>
+			<type><![CDATA[INT]]></type>
+			<defvalue><![CDATA[5000]]></defvalue>
+			<minvalue><![CDATA[1]]></minvalue>
+			<maxvalue><![CDATA[no limit]]></maxvalue>
+			<example/>
+			<group><![CDATA[STORAGE]]></group>
+			<scope><![CDATA[NORMAL]]></scope>
+		</setting>
+	</app>
+</documentation>

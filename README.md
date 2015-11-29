@@ -5,3 +5,4 @@ https://sites.google.com/site/klaaspublic/rhcsarhce/rhce-voorbeeld-examens/rhcsa
 
 
 http://www.everybodyhertz.co.uk/rhce-sample-exam/
+http://www.dbspecialists.com/scripts/

@@ -6,3 +6,4 @@ https://sites.google.com/site/klaaspublic/rhcsarhce/rhce-voorbeeld-examens/rhcsa
 
 http://www.everybodyhertz.co.uk/rhce-sample-exam/
 http://www.dbspecialists.com/scripts/
+http://mrafeyblog.blogspot.fr/2013/02/compare-two-oracle-users-privilege-and.html

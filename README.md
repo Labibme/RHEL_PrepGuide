@@ -10,7 +10,9 @@ http://mrafeyblog.blogspot.fr/2013/02/compare-two-oracle-users-privilege-and.htm
 http://www.haute-garonne.gouv.fr/content/download/8951/54227/file/DOSSIER+Rnvlmt+CR+240913.pdf
 http://www.hauts-de-seine.gouv.fr/content/download/7326/57103/file/attestation+respect+principes+r%C3%A9publique+-+Nanterre+-+sept2015.pdf
 
-RHCE Sample Exam 1
+*----------------------------------------------------------------------------------------------------------------*
+                                       RHCE Sample Exam 1                                                         
+*----------------------------------------------------------------------------------------------------------------*
 You’ll have two hours to complete the following tasks:1.
  
 Configure an SSH server with access limited to the local network. Create local usersnamed katie and dickens. Limit SSH access on that server only to user katie.2.
@@ -34,3 +36,31 @@ Create an RPM from a single file. Use the README file in the/usr/share/doc/tcp_w
 Configure IPv4 and IPv6 forwarding on the local system.11.
  
 Set up system activity reports to run the related accounting tool every five minutes.
+*----------------------------------------------------------------------------------------------------------------*
+                                       RHCE Sample Exam 2                                                         
+*----------------------------------------------------------------------------------------------------------------*
+You’ll have two hours to complete the following tasks:1.
+ 
+Configure the server1.example.com system as a logging server. Configure thetester1.example.com system (or the physical host system) as a logging client.2.
+ 
+Configure the server1.example.com system as a Kerberos client on the example.comdomain, with a KDC and administrative server of the physical host system.3.
+ 
+Set up an Apache web server with two regular virtual hosts. Set it up on URLstest1.example.com and test2.example.com. Create and use the /web subdirectory for this purpose. Include appropriate index.html files, with contents for each URL.4.
+ 
+Set up a shared subdirectory named cubs on that Apache web server, accessible to userselizabeth and fred. Limit access to the local network.5.
+ 
+Configure the system to work with a CGI application, accessible on thetest1.example.com system. For that purpose, you may use the following code in anappropriate CGI script. Call it the good.pl file.
+#!/usr/bin/perlprint "Content-type: text/html\n\n";print "Good Job!\n";
+6.
+ 
+Set up an FTP server that supports only anonymous access, even from outside your LAN.Do not allow access from any regular users, even if the ftp_home_dir boolean is on.7.
+ 
+Configure a caching-only DNS server that forwards requests to the physical host system.8.
+ 
+Set up a local SMTP server that supports access limited to systems on the local network.9.
+ 
+Configure an SSH server for user mike on the server1.example.com system. Configure password-free access, with passphrases, using key-based authentication from a remotesystem, either tester1.example.com or the physical host. Use the following passphrase:
+Linux rocks, Windows does not.
+10.
+ 
+Set up masquerading from the network with server1.example.com to outside networks,using the IP address of the physical host system.

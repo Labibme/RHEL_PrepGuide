@@ -7,9 +7,7 @@ https://sites.google.com/site/klaaspublic/rhcsarhce/rhce-voorbeeld-examens/rhcsa
 http://www.everybodyhertz.co.uk/rhce-sample-exam/
 http://www.dbspecialists.com/scripts/
 http://mrafeyblog.blogspot.fr/2013/02/compare-two-oracle-users-privilege-and.html
-http://www.haute-garonne.gouv.fr/content/download/8951/54227/file/DOSSIER+Rnvlmt+CR+240913.pdf
-http://www.hauts-de-seine.gouv.fr/content/download/7326/57103/file/attestation+respect+principes+r%C3%A9publique+-+Nanterre+-+sept2015.pdf
-
+http://ptgmedia.pearsoncmg.com/images/9780789754059/samplepages/9780789754059.pdf
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

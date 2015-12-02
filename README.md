@@ -8,6 +8,8 @@ http://www.everybodyhertz.co.uk/rhce-sample-exam/
 http://www.dbspecialists.com/scripts/
 http://mrafeyblog.blogspot.fr/2013/02/compare-two-oracle-users-privilege-and.html
 http://ptgmedia.pearsoncmg.com/images/9780789754059/samplepages/9780789754059.pdf
+http://nothen.com.ar/en/how-to-practice-for-red-hats-ex200-and-ex300-exams/
+
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

@@ -51,7 +51,9 @@ Set up an Apache web server with two regular virtual hosts. Set it up on URLstes
 Set up a shared subdirectory named cubs on that Apache web server, accessible to userselizabeth and fred. Limit access to the local network.5.
  
 Configure the system to work with a CGI application, accessible on thetest1.example.com system. For that purpose, you may use the following code in anappropriate CGI script. Call it the good.pl file.
-#!/usr/bin/perlprint "Content-type: text/html\n\n";print "Good Job!\n";
+
+"#!/usr/bin/perlprint "Content-type: text/html\n\n";print "Good Job!\n";"
+
 6.
  
 Set up an FTP server that supports only anonymous access, even from outside your LAN.Do not allow access from any regular users, even if the ftp_home_dir boolean is on.7.

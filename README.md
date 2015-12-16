@@ -10,6 +10,7 @@ http://mrafeyblog.blogspot.fr/2013/02/compare-two-oracle-users-privilege-and.htm
 http://ptgmedia.pearsoncmg.com/images/9780789754059/samplepages/9780789754059.pdf
 http://nothen.com.ar/en/how-to-practice-for-red-hats-ex200-and-ex300-exams/
 http://balajitheone.blogspot.fr/2011/02/red-hat-ex300-objectives-and-solutions.html
+https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04
 
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         

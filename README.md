@@ -11,8 +11,6 @@ http://ptgmedia.pearsoncmg.com/images/9780789754059/samplepages/9780789754059.pd
 http://nothen.com.ar/en/how-to-practice-for-red-hats-ex200-and-ex300-exams/
 http://balajitheone.blogspot.fr/2011/02/red-hat-ex300-objectives-and-solutions.html
 https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04
-https://mail-settings.google.com/mail/vf-%5BANGjdJ9FrWWKIoL86Rxqvn-GoLnOll1NqGV3bmR5DJNbD8PJ7TfN6euvz6LIoUTbKapwejai9vN1m5kQV8DN2JQivLRsP_BS30_Qvc83PQ%5D-2vg7KzKdX_iUN_QNzffy8wgXq_c
-
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

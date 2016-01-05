@@ -12,6 +12,7 @@ http://nothen.com.ar/en/how-to-practice-for-red-hats-ex200-and-ex300-exams/
 http://balajitheone.blogspot.fr/2011/02/red-hat-ex300-objectives-and-solutions.html
 https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04
 https://github.com/texastwister/OpenRHCE
+https://unixspace.wordpress.com/2013/08/09/rhcsa-rhce-exams-how-to-prepare-the-labs/comment-page-1/
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

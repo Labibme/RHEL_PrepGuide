@@ -15,6 +15,7 @@ https://github.com/texastwister/OpenRHCE
 https://unixspace.wordpress.com/2013/08/09/rhcsa-rhce-exams-how-to-prepare-the-labs/comment-page-1/
 http://www.lestutosdenico.com/divers/les-certifications-en-securite-de-l-information
 http://www.hsc.fr/ressources/presentations/rs04-certif/certif.pdf
+http://www.mile2.com/images/courses/FBI_CyberPage_AdditionalCertificates.pdf
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

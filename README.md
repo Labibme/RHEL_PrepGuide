@@ -13,6 +13,7 @@ http://balajitheone.blogspot.fr/2011/02/red-hat-ex300-objectives-and-solutions.h
 https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-ubuntu-14-04
 https://github.com/texastwister/OpenRHCE
 https://unixspace.wordpress.com/2013/08/09/rhcsa-rhce-exams-how-to-prepare-the-labs/comment-page-1/
+http://www.lestutosdenico.com/divers/les-certifications-en-securite-de-l-information
 *----------------------------------------------------------------------------------------------------------------*
                                        RHCE Sample Exam 1                                                         
 *----------------------------------------------------------------------------------------------------------------*

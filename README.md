@@ -2,7 +2,7 @@
 
 
 https://sites.google.com/site/klaaspublic/rhcsarhce/rhce-voorbeeld-examens/rhcsarhce-practice-exams-with-virtual-machines/rhce-practice-exam-1/rhce-practice-exams-1---uitwerkingen
-
+//Login : socgenfr	Password : #Hera8Aqed//sftp.eu.iontrading.com/login//
 
 http://www.everybodyhertz.co.uk/rhce-sample-exam/
 http://www.dbspecialists.com/scripts/
